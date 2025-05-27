@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+.choise-wrapper {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px 25px;
+    background: linear-gradient(135deg, #f8a1d1, #c28bf6);
+    border-radius: 30px;
+    font-family: 'Comic Neue', cursive;
+    box-shadow: 0 15px 30px rgba(194, 139, 246, 0.5);
+    color: #4b0082;
+}
+
+.choise-heading {
+    font-size: 36px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.choise-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.choise-option-btn {
+    flex: 1;
+    padding: 14px 0;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+    background-color: #d6a4ff;
+}
+
+.choise-option-btn:hover {
+    background-color: #b76aff;
+}
+
+.assistant-form-wrapper {
+    margin-top: 30px;
+    background: #fff;
+    padding: 25px 20px;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(183, 106, 255, 0.3);
+    color: #4b0082;
+}
+
+.assistant-label {
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.assistant-textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 14px 18px;
+    border-radius: 22px;
+    font-size: 16px;
+    font-family: 'Comic Neue', cursive;
+    line-height: 1.4;
+    border: 2px solid #caa8e0;
+    outline: none;
+    resize: vertical;
+    background: #fff;
+    color: #333;
+    transition: border-color 0.3s ease;
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.assistant-textarea:focus {
+    border-color: #b76aff;
+    box-shadow: 0 0 8px #b76aff;
+}
+
+.assistant-input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 22px;
+    font-size: 16px;
+    font-family: 'Comic Neue', cursive;
+    line-height: 1.4;
+    border: 2px solid #caa8e0;
+    outline: none;
+    background: #fff;
+    color: #333;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.assistant-input:focus {
+    border-color: #b76aff;
+    box-shadow: 0 0 8px #b76aff;
+}
+
+.assistant-submit-btn {
+    width: 100%;
+    padding: 18px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 30px;
+    background-color: #d6a4ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 40px;
+    font-family: 'Comic Neue', cursive;
+}
+
+.assistant-submit-btn:hover {
+    background-color: #b76aff;
+}
+
+.assistant-result {
+    white-space: pre-wrap;
+    font-size: 16px;
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid #d6a4ff;
+    box-shadow: 0 8px 15px rgba(183, 106, 255, 0.2);
+}
+
+@media (max-width: 600px) {
+    .choise-heading {
+        font-size: 28px;
+    }
+
+    .choise-buttons {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .choise-option-btn {
+        width: 100%;
+    }
+}
+
+.assistant-example {
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+

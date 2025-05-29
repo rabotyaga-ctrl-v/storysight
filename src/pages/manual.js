@@ -4,21 +4,21 @@ import './manual.css';
 
 const stylesList = [
     {
-        id: 'cartoon',
-        name: 'Мультяшный стиль',
-        img: '/images/photo4.jpg',
+        id: 'photographic',
+        name: 'Фотография',
+        img: '/images/photographic.png',
         tooltip: 'Яркие цвета, упрощённые формы, динамичный мультяшный стиль.',
     },
     {
         id: 'anime',
-        name: 'Аниме стиль',
-        img: '/images/photo2.jpg',
+        name: 'Аниме',
+        img: '/images/anime.png',
         tooltip: 'Стиль японской анимации с выразительными глазами и детализированными персонажами.',
     },
     {
-        id: 'vangogh',
-        name: 'Стиль Ван Гога',
-        img: '/images/photo3.jpg',
+        id: 'comic-book',
+        name: 'Комикс',
+        img: '/images/comic.png',
         tooltip: 'Импрессионизм, мазки кисти и живописные текстуры как у Ван Гога.',
     },
 ];
@@ -147,7 +147,7 @@ export default function Manual() {
             </div>
 
             <div className="button-row">
-                <button className="btn btn-gray" onClick={() => navigate('/choise')}>
+                <button className="btn btn-gray" onClick={() => navigate('/create-choice')}>
                     Назад
                 </button>
                 <button className="btn btn-purple" onClick={handleGenerate} disabled={loading}>

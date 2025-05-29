@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
+import CreateChoice from './pages/CreateChoice';
 import GenerateCharacter from './pages/GenerateCharacter';
 import MyProjects from "./pages/MyProjects";
-import Choise from "./pages/Choise";
+import Template from "./pages/Template";
 import Manual from "./pages/manual";         // новый ручной ввод
 import TelegramLogin from "./pages/TelegramLogin";
 import ResultMain from "./pages/ResultMain";
@@ -17,9 +18,10 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/create-choice" element={<CreateChoice />} />
                 <Route path="/generate-character" element={<GenerateCharacter />} />
                 <Route path="/login" element={<TelegramLogin />} />
-                <Route path="/choise" element={<Choise />} />
+                <Route path="/template" element={<Template />} />
                 <Route path="/manual" element={<Manual />} />
                 <Route path="/result-main" element={<ResultMain />} />
                 <Route path="/my-projects" element={<MyProjects />} />

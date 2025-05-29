@@ -204,12 +204,12 @@
     max-width: 1024px;
     height: auto;
     border-radius: 16px;
-    transform: scale(0.3);
-    transform-origin: top center;
-    margin-bottom: -200px; /* компенсировать пустое пространство из-за scale */
-    margin-top: -80px;
+    margin-bottom: 10px; /* убрал отрицательные отступы */
+    margin-top: 0;
     pointer-events: none;
+    object-fit: cover;
 }
+
 
 .character-title {
     font-size: 18px;
@@ -324,14 +324,6 @@
     color: #4b0082;
     text-align: center;
     padding: 15px;
-}
-
-.character-img {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    object-fit: cover;
-    margin-bottom: 10px;
 }
 
 .character-title {

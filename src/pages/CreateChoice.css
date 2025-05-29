@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+.create-choice-container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, #f8a1d1, #c28bf6);
+    border-radius: 30px;
+    box-shadow: 0 15px 30px rgba(194, 139, 246, 0.5);
+    font-family: 'Comic Neue', cursive;
+    color: #4b0082;
+    text-align: center;
+}
+
+.create-choice-container h1 {
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.btn {
+    flex: 1;
+    padding: 16px 0;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    min-width: 140px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #d27de6, #9046e1);
+    color: white;
+    box-shadow: 0 6px 12px rgba(183, 106, 255, 0.5);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #9046e1, #d27de6);
+    box-shadow: 0 8px 16px rgba(144, 70, 225, 0.6);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #b76aff, #f8a1d1);
+    color: white;
+    box-shadow: 0 6px 12px rgba(183, 106, 255, 0.5);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(45deg, #d27de6, #9046e1);
+    box-shadow: 0 8px 16px rgba(144, 70, 225, 0.6);
+}
+

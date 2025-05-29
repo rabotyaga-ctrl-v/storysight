@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './Choise.css';
+import './Template.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function Choise() {
+export default function Template() {
     const [storyText, setStoryText] = useState('');
     const [selectedCharacter, setSelectedCharacter] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
@@ -11,27 +11,27 @@ export default function Choise() {
     const characterTemplates = [
         {
             id: 'cockatiel',
-            title: 'cockatiel',
+            title: 'Cockatiel',
             description: 'Весёлые и неугомонные попугаи. Прорекламируют ваш продукт, если вы, конечно, их поймаете.',
         },
         {
             id: 'cat',
-            title: 'cat',
+            title: 'Cat',
             description: 'Ловкий, пушистый и абсолютно не заинтересован в вашем проекте. Но выглядит шикарно, признайте!',
         },
         {
             id: 'black_bear',
-            title: 'black bear',
-            description: 'Интроверт из мира медведей. Теперь он путешествует и даже пишет свою книгу.',
+            title: 'Black bear',
+            description: 'Интроверт из мира медведей. Теперь он путешествует и даже пишет свою книгу. Раньше проживал в России.',
         },
         {
             id: 'raven',
-            title: 'raven',
+            title: 'Raven',
             description: 'Ворон-минималист. Немногословен. Оно и понятно, ведь птицы не говорят. Самое главное, что он здесь.',
         },
         {
             id: 'tiger',
-            title: 'tiger',
+            title: 'Tiger',
             description: 'Уверенный, красивый и всё такой же опасный. Харизма на максималках. Хищник, инфлюенсер и икона стиля.',
         },
     ];
@@ -96,7 +96,7 @@ export default function Choise() {
                 Сгенерировать комикс
             </button>
 
-            <button className="back-btn" onClick={() => navigate(-1)}>
+            <button className="back-btn" onClick={() => navigate("/create-choice")}>
                 Назад
             </button>
         </div>

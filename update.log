@@ -222,8 +222,8 @@ Fast-forward
  src/pages/AssistantForm.jsx    |  77 +++++++++++++++++
  src/pages/Character.css        | 160 -----------------------------------
  src/pages/Character.js         | 143 --------------------------------
- src/pages/Choise.css           | 160 +++++++++++++++++++++++++++++++++++
- src/pages/Choise.js            |  43 ++++++++++
+ src/pages/Template.css           | 160 +++++++++++++++++++++++++++++++++++
+ src/pages/Template.js            |  43 ++++++++++
  src/pages/GenerateCharacter.js |  54 +++++++++---
  src/pages/GeneratePlot.js      | 184 -----------------------------------------
  src/pages/Home.jsx             |  10 +--
@@ -241,8 +241,8 @@ Fast-forward
  create mode 100644 src/pages/AssistantForm.jsx
  delete mode 100644 src/pages/Character.css
  delete mode 100644 src/pages/Character.js
- create mode 100644 src/pages/Choise.css
- create mode 100644 src/pages/Choise.js
+ create mode 100644 src/pages/Template.css
+ create mode 100644 src/pages/Template.js
  delete mode 100644 src/pages/GeneratePlot.js
  delete mode 100644 src/pages/Plot.css
  delete mode 100644 src/pages/Plot.js

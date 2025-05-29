@@ -3,20 +3,20 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
 const works = [
-    { id: 1, image: "/images/work1.png", description: "Бренд кофе с легендой о путешественнике." },
-    { id: 2, image: "/images/work2.png", description: "Ювелирный бренд с историей из будущего." },
-    { id: 3, image: "/images/work3.png", description: "Арт-магазин, вдохновлённый снами художника." },
-    { id: 4, image: "/images/work4.png", description: "Крафтовая пекарня — сказка о потерянном рецепте." },
-    { id: 5, image: "/images/work5.png", description: "Винтажный бутик — дух 60-х в современности." },
-    { id: 6, image: "/images/work4.png", description: "Маркетинг через историю героя-путешественника." },
-    { id: 7, image: "/images/work3.png", description: "Салон, вдохновлённый мифами и метаморфозами." },
-    { id: 8, image: "/images/work8.png", description: "Проект об утерянной цивилизации и бизнесе." },
-    { id: 9, image: "/images/work10.png", description: "Эко-бренд, построенный на легенде о новом мире." },
-    { id: 10, image: "/images/work10.png", description: "Эко-бренд2, построенный на легенде о новом мире." },
-    { id: 11, image: "/images/work10.png", description: "Эко-бренд3, построенный на легенде о новом мире." },
-    { id: 12, image: "/images/work10.png", description: "Эко-бренд4, построенный на легенде о новом мире." },
-    { id: 13, image: "/images/work10.png", description: "Эко-бренд5, построенный на легенде о новом мире." },
-    { id: 14, image: "/images/work10.png", description: "Эко-бренд6, построенный на легенде о новом мире." },
+    { id: 1, image: "/images/work1.png", description: "Ваша чистота - ваше спокойствие" },
+    { id: 2, image: "/images/work2.png", description: "Продавец шаурмы, который старается привлечь клиентов" },
+    { id: 3, image: "/images/work3.png", description: "Магазин комнатных растений" },
+    { id: 4, image: "/images/work4.png", description: "Блокнот, который меняет всё" },
+    { id: 5, image: "/images/work5.png", description: "Сапожник и путь за гвоздями" },
+    { id: 6, image: "/images/work6.png", description: "Маркетинг через историю героя-путешественника" },
+    { id: 7, image: "/images/work7.png", description: "Владелица пекарни и неожиданный успех" },
+    { id: 8, image: "/images/work8.png", description: "Умный дом — уют по щелчку" },
+    { id: 9, image: "/images/work9.png", description: "Ремонт старинных часов" },
+    { id: 10, image: "/images/work10.png", description: "Крафтовая упаковка подарков" },
+    { id: 11, image: "/images/work11.png", description: "Пекарня — аромат и уют" },
+    { id: 12, image: "/images/work12.png", description: "Воспоминания из одного путешествия" },
+    { id: 13, image: "/images/work13.png", description: "Продавец машин — контраст «до и после»" },
+    { id: 14, image: "/images/work14.png", description: "Онлайн-курс по мышлению" },
 ];
 
 const Home = () => {
@@ -26,7 +26,7 @@ const Home = () => {
         <div className="home-container">
             <nav className="top-tabs">
                 <span className="tab" onClick={() => navigate("/generate-character")}>
-                    Персонаж
+                    Конструктор персонажа
                 </span>
                 <span className="tab" onClick={() => navigate("/my-projects")}>
                     Мои проекты
@@ -40,7 +40,7 @@ const Home = () => {
                 </p>
 
                 <div className="button-group">
-                    <button className="btn" onClick={() => navigate("/choise")}>
+                    <button className="btn" onClick={() => navigate("/create-choice")}>
                         Начать
                     </button>
                     <button className="btn" onClick={() => navigate("/login")}>

@@ -398,3 +398,53 @@
     font-weight: bold;
     text-align: center;
 }
+
+.slider-wrapper {
+    margin: 30px auto 10px;
+    text-align: center;
+}
+
+.slider-label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #000;
+    font-family: 'Comic Neue', cursive;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    max-width: 300px;
+    height: 10px;
+    background: linear-gradient(to right, #e0b3ff, #ffc1f3);
+    border-radius: 20px;
+    outline: none;
+    transition: background 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #000;
+    border: 2px solid white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #000;
+    border: 2px solid white;
+    cursor: pointer;
+}

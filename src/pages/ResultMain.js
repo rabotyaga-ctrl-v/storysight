@@ -1,55 +1,66 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './ResultMain.css';
 
 export default function ResultMain() {
     const location = useLocation();
     const navigate = useNavigate();
+
     const images = location.state?.images || [];
+    const storyline = location.state?.storyline || '';
+    const prompts = location.state?.prompts || [];
 
     if (images.length === 0) {
         return (
-            <div>
+            <div className="result-empty">
                 <h2>Нет изображений для отображения</h2>
                 <button onClick={() => navigate('/')}>На главную</button>
             </div>
         );
     }
 
-    const handleDownload = (url) => {
-        // скачиваем картинку по url
+    const handleDownload = (url, index) => {
         const link = document.createElement('a');
         link.href = url;
-        link.download = url.split('/').pop();
+        link.download = `comic_scene_${index + 1}.png`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     };
 
     const handleSaveProject = () => {
+        const projectData = { storyline, prompts, images };
+        console.log('Сохраняем проект:', projectData);
         alert('Функция сохранения пока не реализована.');
     };
 
     return (
         <div className="result-main-wrapper">
-            <h1>Ваши сгенерированные изображения</h1>
+            <h1 className="title">Ваш комикс</h1>
+
+            <div className="story-block">
+                <h2>Сюжет</h2>
+                <p>{storyline}</p>
+            </div>
 
             <div className="images-grid">
-                {images.map(({ url, prompt }, i) => (
-                    <div className="image-card" key={i}>
+                {images.map((url, i) => (
+                    <div key={i} className="image-card">
                         <div className="image-wrapper">
-                            <img src={url} alt={`Generated ${i}`} />
-                            <div className="image-overlay">
-                                <p>{prompt}</p>
-                            </div>
+                            <img src={url} alt={`Scene ${i + 1}`} />
                         </div>
-                        <button onClick={() => handleDownload(url)} className="download-btn">Скачать</button>
+                        <div className="image-overlay">{prompts[i]}</div>
+                        <button className="download-btn" onClick={() => handleDownload(url, i)}>
+                            Скачать
+                        </button>
                     </div>
                 ))}
             </div>
 
             <div className="buttons-row">
-                <button onClick={() => navigate('/')} className="btn-home">На главную</button>
-                <button onClick={handleSaveProject} className="btn-save">Сохранить в мои проекты</button>
+                <button className="btn-home" onClick={() => navigate('/')}>На главную</button>
+                <button className="btn-home" onClick={() => navigate(-1)}>Назад</button>
+                <button className="btn-save" onClick={handleSaveProject}>Сохранить в проекты</button>
             </div>
         </div>
     );

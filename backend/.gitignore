@@ -13,6 +13,7 @@ backend/__pycache__/
 update.log
 update.sh
 webhook_server.py
+backend.log
 
 # dependencies
 /node_modules

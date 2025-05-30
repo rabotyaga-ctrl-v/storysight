@@ -1,9 +1,37 @@
+body {
+    background: linear-gradient(to right, #f8e1ff, #e0d4f5);
+}
+
 .result-main-wrapper {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 40px auto;
     font-family: 'Comic Neue', cursive;
     color: #4b0082;
     padding: 20px;
+    border-radius: 32px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.story-block {
+    background: #fff0ff;
+    padding: 20px;
+    border-radius: 24px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(183, 106, 255, 0.1);
+}
+
+.story-block h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #6a0dad;
 }
 
 .images-grid {
@@ -16,18 +44,19 @@
 
 .image-card {
     position: relative;
-    width: 200px;
-    border-radius: 20px;
+    width: 180px;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 8px 15px rgba(183, 106, 255, 0.3);
+    box-shadow: 0 6px 12px rgba(183, 106, 255, 0.15);
     background: white;
     text-align: center;
+    transition: transform 0.2s ease;
 }
 
 .image-wrapper {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 180px;
     overflow: hidden;
 }
 
@@ -44,20 +73,12 @@
 }
 
 .image-overlay {
-    position: absolute;
-    bottom: 0;
-    background: rgba(75, 0, 130, 0.8);
-    color: white;
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    box-sizing: border-box;
-}
-
-.image-card:hover .image-overlay {
-    opacity: 1;
+    padding: 8px;
+    font-size: 13px;
+    color: #555;
+    background: #faf0ff;
+    border-top: 1px solid #eee;
+    min-height: 50px;
 }
 
 .download-btn {
@@ -67,7 +88,7 @@
     padding: 10px 0;
     width: 100%;
     font-weight: 700;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 24px 24px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -79,19 +100,47 @@
 .buttons-row {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 20px;
+    margin-top: 30px;
 }
 
 .btn-home, .btn-save {
-    background: #d6a4ff;
+    background: #e0bbff;
     border: none;
     padding: 12px 24px;
-    font-weight: 700;
-    border-radius: 30px;
+    font-weight: 600;
+    border-radius: 999px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .btn-home:hover, .btn-save:hover {
+    background: #d199ff;
+}
+
+.result-empty {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: 'Comic Neue', cursive;
+    color: #4b0082;
+}
+
+.result-empty h2 {
+    margin-bottom: 20px;
+}
+
+.result-empty button {
+    padding: 12px 24px;
+    border-radius: 30px;
+    border: none;
     background: #b76aff;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.result-empty button:hover {
+    background: #8c3ec3;
 }

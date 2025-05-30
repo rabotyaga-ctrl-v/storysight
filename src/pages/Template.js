@@ -5,38 +5,19 @@ import { useNavigate } from 'react-router-dom';
 export default function Template() {
     const [storyText, setStoryText] = useState('');
     const [selectedCharacter, setSelectedCharacter] = useState(null);
+    const [numImages, setNumImages] = useState(1);
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
     const characterTemplates = [
-        {
-            id: 'cockatiel',
-            title: 'Cockatiel',
-            description: 'Весёлые и неугомонные попугаи. Прорекламируют ваш продукт, если вы, конечно, их поймаете.',
-        },
-        {
-            id: 'cat',
-            title: 'Cat',
-            description: 'Ловкий, пушистый и абсолютно не заинтересован в вашем проекте. Но выглядит шикарно, признайте!',
-        },
-        {
-            id: 'black_bear',
-            title: 'Black bear',
-            description: 'Интроверт из мира медведей. Теперь он путешествует и даже пишет свою книгу. Раньше проживал в России.',
-        },
-        {
-            id: 'raven',
-            title: 'Raven',
-            description: 'Ворон-минималист. Немногословен. Оно и понятно, ведь птицы не говорят. Самое главное, что он здесь.',
-        },
-        {
-            id: 'tiger',
-            title: 'Tiger',
-            description: 'Уверенный, красивый и всё такой же опасный. Харизма на максималках. Хищник, инфлюенсер и икона стиля.',
-        },
+        { id: 'cockatiel', title: 'Cockatiel', description: 'Весёлые и неугомонные попугаи. Прорекламируют ваш продукт, если вы, конечно, их поймаете.' },
+        { id: 'cat', title: 'Cat', description: 'Ловкий, пушистый и абсолютно не заинтересован в вашем проекте. Но выглядит шикарно, признайте!' },
+        { id: 'black_bear', title: 'Black bear', description: 'Интроверт из мира медведей. Теперь он путешествует и даже пишет свою книгу. Раньше проживал в России.' },
+        { id: 'raven', title: 'Raven', description: 'Ворон-минималист. Немногословен. Оно и понятно, ведь птицы не говорят. Самое главное, что он здесь.' },
+        { id: 'tiger', title: 'Tiger', description: 'УУверенный, красивый и всё такой же опасный. Харизма на максималках. Хищник, инфлюенсер и икона стиля.' },
     ];
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!storyText.trim()) {
             setErrorMessage('Пожалуйста, введите сюжет.');
             return;
@@ -47,12 +28,34 @@ export default function Template() {
         }
 
         setErrorMessage('');
-        console.log('Отправка на сервер:', {
-            text: storyText,
-            character: selectedCharacter,
-        });
 
-        // TODO: Отправка на сервер
+        try {
+            const response = await fetch('http://localhost:8000/generate-comic', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    prompt: storyText,
+                    character_name: selectedCharacter,
+                    num_images: numImages,
+                }),
+            });
+
+            if (!response.ok) throw new Error('Ошибка при генерации.');
+
+            const data = await response.json();
+            const imageBase64List = data.images.map((img) => `data:image/png;base64,${img}`);
+
+            navigate('/result-main', {
+                state: {
+                    images: imageBase64List,
+                    storyline: data.storyline,
+                    prompts: data.prompts
+                }
+            });
+        } catch (error) {
+            console.error('Ошибка:', error);
+            setErrorMessage('Произошла ошибка при генерации. Проверьте подключение и попробуйте снова.');
+        }
     };
 
     return (
@@ -88,6 +91,21 @@ export default function Template() {
                         </div>
                     </div>
                 ))}
+            </div>
+
+            <div className="slider-wrapper">
+                <label htmlFor="numImages" className="slider-label">
+                    Количество изображений: {numImages}
+                </label>
+                <input
+                    type="range"
+                    id="numImages"
+                    min="1"
+                    max="8"
+                    value={numImages}
+                    onChange={(e) => setNumImages(parseInt(e.target.value))}
+                    className="slider"
+                />
             </div>
 
             {errorMessage && <div className="error-message">{errorMessage}</div>}

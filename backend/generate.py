@@ -39,7 +39,7 @@ def get_seed_by_character(name: str) -> int:
 def process_prompt_with_chatgpt(prompt: str, num: int, selected_character_name: str) -> (str, List[str]):
     from openai import OpenAI  # безопасно импортировать тут
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    client = OpenAI()
 
     system = "Ты помогаешь создавать короткие сценки для комиксов."
     user = f"""

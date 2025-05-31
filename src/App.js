@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
+import MyProjects from "./pages/myprojects";
 import CreateChoice from './pages/CreateChoice';
 import GenerateCharacter from './pages/GenerateCharacter';
-import MyProjects from "./pages/MyProjects";
 import Template from "./pages/Template";
 import Manual from "./pages/manual";         // новый ручной ввод
 import TelegramLogin from "./pages/TelegramLogin";

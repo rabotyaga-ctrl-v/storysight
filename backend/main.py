@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 from db import init_db
 from auth import auth_router
 from generate import generate_router
+from manual import manual_router
+from edit import edit_router
 
 # Загрузка переменных окружения
 load_dotenv()
@@ -40,15 +42,10 @@ app.add_middleware(
 # Роуты
 app.include_router(auth_router)
 app.include_router(generate_router)
+app.include_router(manual_router)
+app.include_router(edit_router)
 
 # Запуск сервера
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=8000,
-        workers=4,
-        proxy_headers=True,
-        reload=False  # отключить в проде
-    )
+    uvicorn.run(app, host="127.0.0.1", port=8000)

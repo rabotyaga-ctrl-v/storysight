@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, func, create_engine
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, func, create_engine, Text
 from sqlalchemy.orm import sessionmaker, relationship, declarative_base
+from datetime import timezone
 
 Base = declarative_base()
 
@@ -19,11 +20,13 @@ class User(Base):
     created_at = Column(DateTime, default=func.now())
     images = relationship("Image", back_populates="user")
 
+
 class Image(Base):
     __tablename__ = 'images'
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey('users.id'), nullable=True)
-    title = Column(String, nullable=True)
+    title = Column(Text, nullable=True)  # <-- тут Text вместо String
+    storyline = Column(Text, nullable=True)
     url = Column(String, nullable=False)
     created_at = Column(DateTime, default=func.now())
     user = relationship("User", back_populates="images")

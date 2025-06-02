@@ -1,16 +1,26 @@
 # generate.py
 
 import os
-import requests
 import logging
-from fastapi import APIRouter, HTTPException
+from typing import List, Tuple
+
+import requests
+from fastapi import APIRouter, HTTPException, Depends, Request
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from typing import List
+from sqlalchemy.orm import Session
+
+from db import SessionLocal, User, Image
+from auth import get_current_user  # предполагаю, что get_current_user отдаёт User модель из БД
+
+try:
+    from openai import OpenAI
+except ImportError:
+    OpenAI = None
 
 generate_router = APIRouter()
 logger = logging.getLogger(__name__)
 
-# --- Константы и модели ---
 CHARACTER_LIST = [
     {"name": "black bear", "seed": 987987},
     {"name": "cat", "seed": 597524},
@@ -27,22 +37,38 @@ class ComicRequest(BaseModel):
 class ComicResponse(BaseModel):
     images: List[str]
     storyline: str
+    prompts: List[str]
 
-# --- Логика генерации ---
+class SaveProjectRequest(BaseModel):
+    storyline: str
+    prompts: List[str]
+    images: List[str]
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 def get_seed_by_character(name: str) -> int:
     for character in CHARACTER_LIST:
         if character["name"] == name:
             return character["seed"]
-    raise ValueError("Unknown character")
+    raise HTTPException(status_code=400, detail="Unknown character")
 
-def process_prompt_with_chatgpt(prompt: str, num: int, selected_character_name: str) -> (str, List[str]):
-    from openai import OpenAI  # безопасно импортировать тут
+def process_prompt_with_chatgpt(prompt: str, num: int, selected_character_name: str) -> Tuple[str, List[str]]:
+    if OpenAI is None:
+        raise HTTPException(status_code=500, detail="OpenAI SDK not installed")
+
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-    client = OpenAI()
+    if not OPENAI_API_KEY:
+        raise HTTPException(status_code=500, detail="OpenAI API key not configured")
 
-    system = "Ты помогаешь создавать короткие сценки для комиксов."
-    user = f"""
+    client = OpenAI(api_key=OPENAI_API_KEY)
+
+    system_msg = "Ты помогаешь создавать короткие сценки для комиксов."
+    user_msg = f"""
 Переведи и улучшИ следующий текст на английский язык. Затем разбей его точно на {num} сцену(ы) для комикса. 
 Каждая сцена должна содержать максимум 20 слов и быть пронумерована. 
 Строго соблюдай количество сцен — не больше и не меньше числа: {num}.
@@ -64,16 +90,17 @@ Storyline: <переведённый и улучшенный текст>
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": system},
-            {"role": "user", "content": user}
+            {"role": "system", "content": system_msg},
+            {"role": "user", "content": user_msg}
         ],
         temperature=0.2,
-        top_p=0.8
+        top_p=0.8,
     )
 
     content = response.choices[0].message.content.strip()
-    print(content)
-    lines = [line for line in content.splitlines() if line.strip()]
+    logger.debug(f"ChatGPT response:\n{content}")
+
+    lines = [line.strip() for line in content.splitlines() if line.strip()]
 
     storyline = ""
     prompts = []
@@ -82,9 +109,9 @@ Storyline: <переведённый и улучшенный текст>
         if line.lower().startswith("storyline:"):
             storyline = line.split(":", 1)[1].strip()
         elif ":" in line:
-            parts = line.split(":", 1)
-            if parts[0].strip().isdigit():
-                prompts.append(parts[1].strip())
+            num_part, text_part = line.split(":", 1)
+            if num_part.strip().isdigit():
+                prompts.append(text_part.strip())
 
     if not storyline or len(prompts) < num:
         raise HTTPException(status_code=500, detail="Ошибка разбора ответа ChatGPT")
@@ -93,6 +120,8 @@ Storyline: <переведённый и улучшенный текст>
 
 def generate_image(prompt: str, seed: int) -> str:
     STABILITY_API_KEY = os.getenv("STABILITY_API_KEY")
+    if not STABILITY_API_KEY:
+        raise HTTPException(status_code=500, detail="Stability API key not configured")
 
     headers = {
         "Content-Type": "application/json",
@@ -121,22 +150,74 @@ def generate_image(prompt: str, seed: int) -> str:
     )
 
     if response.status_code != 200:
+        logger.error(f"Stability API error: {response.status_code} - {response.text}")
         raise HTTPException(status_code=500, detail=f"Image generation failed: {response.text}")
 
     base64_image = response.json()["artifacts"][0]["base64"]
     return base64_image
 
-# --- Endpoint генерации комикса ---
 @generate_router.post("/generate-comic", response_model=ComicResponse)
-def generate_comic(req: ComicRequest):
+def generate_comic(req: ComicRequest, db: Session = Depends(get_db)):
     try:
         seed = get_seed_by_character(req.character_name)
-        # Передаём имя персонажа в функцию генерации текста
         storyline, prompts = process_prompt_with_chatgpt(req.prompt, req.num_images, req.character_name)
 
         images = [generate_image(p, seed) for p in prompts]
-        return ComicResponse(images=images, storyline=storyline)
+        return ComicResponse(images=images, storyline=storyline, prompts=prompts)
 
     except Exception as e:
         logger.error(f"Ошибка генерации комикса: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@generate_router.post("/save-project")
+def save_project(
+    data: SaveProjectRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    saved_count = 0
+
+    try:
+        for i, image_url in enumerate(data.images):
+            prompt_text = data.prompts[i] if i < len(data.prompts) else "Без промпта"
+
+            existing = db.query(Image).filter_by(user_id=current_user.id, url=image_url).first()
+            if existing:
+                continue  # пропускаем дубликаты
+
+            img = Image(
+                user_id=current_user.id,
+                title=f"Сцена {i + 1}: {prompt_text}",
+                url=image_url,
+                storyline=data.storyline
+            )
+            db.add(img)
+            saved_count += 1
+
+        if saved_count > 0:
+            db.commit()
+            return {"status": "ok", "message": f"Сохранено изображений: {saved_count}"}
+        else:
+            return {"status": "ok", "message": "Все изображения уже были сохранены"}
+
+    except Exception as e:
+        logger.error(f"Ошибка сохранения проекта: {str(e)}")
+        raise HTTPException(status_code=500, detail="Ошибка при сохранении проекта")
+
+@generate_router.get("/my-projects")
+def get_projects(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    images = db.query(Image).filter_by(user_id=current_user.id).order_by(Image.id.desc()).all()
+    result = [
+        {
+            "id": img.id,
+            "title": img.title,
+            "url": img.url,
+            "storyline": img.storyline,
+            "created_at": img.created_at.isoformat() if img.created_at else None,
+        }
+        for img in images
+    ]
+    return JSONResponse(content=result)

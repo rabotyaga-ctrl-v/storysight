@@ -18,7 +18,7 @@ export default function Template() {
     { id: 'tiger', title: 'Tiger', description: 'УУверенный, красивый и всё такой же опасный. Харизма на максималках. Хищник, инфлюенсер и икона стиля.' },
   ];
 
-  const API_URL = 'http://storysight.ru:8000/generate-comic';
+  const API_URL = 'http://localhost:8000/generate-comic';
 
   const handleSubmit = async () => {
     if (!storyText.trim()) {

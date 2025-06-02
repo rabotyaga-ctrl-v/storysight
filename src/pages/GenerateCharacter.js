@@ -9,22 +9,22 @@ export default function GenerateCharacter() {
     const [imageFile, setImageFile] = useState(null);
     const [imageURL, setImageURL] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [, setResultImage] = useState(null); // для результата
 
     const canvasRef = useRef(null);
     const imgRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
 
-    // При загрузке файла создаём URL для показа
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (!file) return;
         setImageFile(file);
         const url = URL.createObjectURL(file);
         setImageURL(url);
+        setResultImage(null); // сброс результата при новом файле
     };
 
-    // Начало рисования
     const handleMouseDown = (e) => {
         if (!canvasRef.current) return;
         setIsDrawing(true);
@@ -32,12 +32,10 @@ export default function GenerateCharacter() {
         setLastPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
     };
 
-    // Окончание рисования
     const handleMouseUp = () => {
         setIsDrawing(false);
     };
 
-    // Рисуем линию на canvas (маску)
     const handleMouseMove = (e) => {
         if (!isDrawing || !canvasRef.current) return;
         const ctx = canvasRef.current.getContext('2d');
@@ -45,9 +43,10 @@ export default function GenerateCharacter() {
         const currentX = e.clientX - rect.left;
         const currentY = e.clientY - rect.top;
 
-        ctx.strokeStyle = 'rgba(255, 0, 0, 0.5)';
-        ctx.lineWidth = 10;
+        ctx.strokeStyle = 'white';  // белая кисть
+        ctx.lineWidth = 20;
         ctx.lineCap = 'round';
+        ctx.globalAlpha = 1.0; // полностью непрозрачная кисть
 
         ctx.beginPath();
         ctx.moveTo(lastPos.x, lastPos.y);
@@ -57,19 +56,19 @@ export default function GenerateCharacter() {
         setLastPos({ x: currentX, y: currentY });
     };
 
-    // Очищаем маску (canvas)
+
     const clearMask = () => {
         if (!canvasRef.current) return;
         const ctx = canvasRef.current.getContext('2d');
         ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     };
 
-    // При смене изображения нужно сбрасывать canvas
     useEffect(() => {
         clearMask();
+        setResultImage(null);
     }, [imageURL]);
 
-    const handleGenerateClick = () => {
+    const handleGenerateClick = async () => {
         if (!prompt.trim()) {
             alert('Пожалуйста, введите промпт.');
             return;
@@ -78,21 +77,59 @@ export default function GenerateCharacter() {
             alert('Пожалуйста, загрузите изображение.');
             return;
         }
+
         setLoading(true);
 
-        // Здесь будет вызов бекенда с отправкой изображения и маски
-        setTimeout(() => {
-            alert('Генерация пока не реализована. Это заглушка.');
+        try {
+            const formData = new FormData();
+            formData.append('prompt', prompt);
+            formData.append('character_name', 'MyCharacter'); // обязательно!
+            formData.append('init_image', imageFile);
+
+            // Получаем blob маски из canvas (формат PNG)
+            const maskBlob = await new Promise((resolve) =>
+                canvasRef.current.toBlob(resolve, 'image/png')
+            );
+            formData.append('mask_image', maskBlob);
+
+            const response = await fetch('http://localhost:8000/edit-character', { // полный адрес
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.detail || 'Ошибка на сервере');
+            }
+
+            const data = await response.json();
+
+            navigate('/result-main', {
+                state: {
+                    images: [`data:image/png;base64,${data.images[0]}`], // оборачиваем в массив
+                    prompts: [prompt], // тоже массив
+                    storyline: 'Изменено в редакторе', // можно оставить пустым, если не используется
+                },
+            });
+
+
+        } catch (error) {
+            alert('Ошибка генерации: ' + error.message);
+        } finally {
             setLoading(false);
-        }, 1000);
+        }
     };
+
 
     return (
         <div className="generate-container" style={{ maxWidth: 600, margin: '30px auto', padding: 20 }}>
-            <h1 style={{ textAlign: 'center', marginBottom: 20 }}>Редактирование изображения (Image2Image с маской)</h1>
+            <h1 style={{ textAlign: 'center', marginBottom: 20 }}>
+                Редактирование изображения (Image2Image с маской)
+            </h1>
 
             <p style={{ fontSize: 14, color: '#555', marginBottom: 20 }}>
-                Загрузите ваше изображение, выделите кисточкой область для изменения, введите промпт и нажмите "Начать генерацию".
+                Загрузите ваше изображение, выделите кисточкой область для изменения, введите промпт и нажмите
+                "Начать генерацию".
             </p>
 
             <textarea
@@ -130,7 +167,6 @@ export default function GenerateCharacter() {
                             alt="Загруженное"
                             style={{ display: 'block', maxWidth: '100%', borderRadius: 6 }}
                             onLoad={() => {
-                                // Устанавливаем размер canvas равным размеру изображения
                                 if (imgRef.current && canvasRef.current) {
                                     canvasRef.current.width = imgRef.current.width;
                                     canvasRef.current.height = imgRef.current.height;

@@ -1,0 +1,80 @@
+.myprojects-container {
+    min-height: 100vh;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(to bottom right, #fce4ec, #e1bee7);
+}
+
+.myprojects-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.myprojects-message {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.storyline {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem;
+    color: #4a4a4a;
+    text-align: center;
+}
+
+.myprojects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.project-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.project-prompt {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+    background: #f9f9f9;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.download-button {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    background-color: #9c27b0;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.download-button:hover {
+    background-color: #7b1fa2;
+}
+
+.project-group {
+    margin-bottom: 3rem;
+}

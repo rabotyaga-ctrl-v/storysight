@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Home.css";
 
 const works = [
@@ -21,6 +22,41 @@ const works = [
 
 const Home = () => {
     const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+
+    // Проверка авторизации
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/auth/me", { withCredentials: true })
+            .then((res) => setUser(res.data))
+            .catch(() => setUser(null));
+    }, []);
+
+    // Telegram авторизация
+    useEffect(() => {
+        window.onTelegramAuth = async (userData) => {
+            try {
+                await axios.post("http://localhost:8000/auth/login", userData, {
+                    withCredentials: true,
+                });
+                const res = await axios.get("http://localhost:8000/auth/me", {
+                    withCredentials: true,
+                });
+                setUser(res.data);
+            } catch (err) {
+                console.error("Ошибка при Telegram входе:", err);
+            }
+        };
+    }, []);
+
+    const handleLogout = async () => {
+        try {
+            await axios.post("http://localhost:8000/auth/logout", {}, { withCredentials: true });
+            setUser(null);
+        } catch (err) {
+            console.error("Ошибка при выходе:", err);
+        }
+    };
 
     return (
         <div className="home-container">
@@ -43,9 +79,30 @@ const Home = () => {
                     <button className="btn" onClick={() => navigate("/create-choice")}>
                         Начать
                     </button>
-                    <button className="btn" onClick={() => navigate("/login")}>
-                        Войти в аккаунт
-                    </button>
+
+                    {!user ? (
+                        <div id="telegram-login" className="telegram-login-wrapper">
+                            <script
+                                async
+                                src="https://telegram.org/js/telegram-widget.js?7"
+                                data-telegram-login="zavod_worker_bot" // ЗАМЕНИ на имя своего бота без @
+                                data-size="large"
+                                data-userpic="true"
+                                data-request-access="write"
+                                data-on-auth="onTelegramAuth"
+                            ></script>
+                        </div>
+                    ) : (
+                        <div className="user-info">
+                            {user.photo_url && (
+                                <img src={user.photo_url} alt="avatar" className="user-avatar" />
+                            )}
+                            <span className="user-name">{user.first_name}</span>
+                            <button className="btn logout-btn" onClick={handleLogout}>
+                                Выйти
+                            </button>
+                        </div>
+                    )}
                 </div>
             </main>
 

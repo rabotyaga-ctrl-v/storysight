@@ -28,10 +28,29 @@ export default function ResultMain() {
         document.body.removeChild(link);
     };
 
-    const handleSaveProject = () => {
+    const handleSaveProject = async () => {
         const projectData = { storyline, prompts, images };
-        console.log('Сохраняем проект:', projectData);
-        alert('Функция сохранения пока не реализована.');
+
+        try {
+            const response = await fetch('http://localhost:8000/save-project', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(projectData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка при сохранении проекта');
+            }
+
+            const result = await response.json();
+            alert('Проект успешно сохранён!');
+            console.log(result);
+        } catch (error) {
+            console.error('Ошибка сохранения:', error);
+            alert('Не удалось сохранить проект.');
+        }
     };
 
     return (

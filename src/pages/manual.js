@@ -24,11 +24,8 @@ const stylesList = [
 ];
 
 export default function Manual() {
-    // description убрал, он не нужен
     const [style, setStyle] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [resultPrompt, setResultPrompt] = useState('');
-    const [imageBase64, setImageBase64] = useState(null);
     const [question1, setQuestion1] = useState('');
     const [question2, setQuestion2] = useState('');
     const [question3, setQuestion3] = useState('');
@@ -49,11 +46,11 @@ export default function Manual() {
         setLoading(true);
 
         try {
-            const response = await fetch('/generate-character/', {
+            const response = await fetch('/generate-manual', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    style: style,
+                    style,
                     question1: question1.trim(),
                     question2: question2.trim(),
                     question3: question3.trim(),
@@ -64,8 +61,17 @@ export default function Manual() {
             const data = await response.json();
 
             if (response.ok) {
-                setResultPrompt(data.prompt_with_style || '');
-                setImageBase64(data.image_base64 || null);
+                // Формируем список изображений с префиксом для base64
+                const imagesWithPrefix = data.images.map(img => `data:image/webp;base64,${img}`);
+
+                // Навигация на ResultMain с передачей данных
+                navigate('/result-main', {
+                    state: {
+                        images: imagesWithPrefix,
+                        storyline: data.storyline || '',
+                        prompts: data.prompts || [],
+                    },
+                });
             } else {
                 alert(data.error || 'Ошибка при генерации');
             }
@@ -154,21 +160,6 @@ export default function Manual() {
                     {loading ? 'Генерация...' : 'Сгенерировать'}
                 </button>
             </div>
-
-            {imageBase64 && (
-                <div className="result-block">
-                    <h2>Результат:</h2>
-                    <p className="result-prompt">{resultPrompt}</p>
-                    <img
-                        src={`data:image/webp;base64,${imageBase64}`}
-                        alt="Результат генерации"
-                        className="result-image"
-                    />
-                    <button className="btn btn-green" onClick={() => navigate('/result-main')}>
-                        Далее
-                    </button>
-                </div>
-            )}
         </div>
     );
 }

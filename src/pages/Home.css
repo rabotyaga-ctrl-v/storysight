@@ -278,3 +278,26 @@ html, body, #root {
 }
 
 /* Описание под вкладками */
+
+.telegram-login-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.logout-btn {
+    background-color: #eee;
+    color: #333;
+}

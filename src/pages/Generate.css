@@ -139,3 +139,10 @@
         width: 100%;
     }
 }
+
+.telegram-login-text {
+    color: #6b4c9a; /* фиолетовый оттенок, как у заголовка */
+    font-weight: 700;
+    font-family: 'Comic Neue', cursive;
+    margin-bottom: 15px;
+}

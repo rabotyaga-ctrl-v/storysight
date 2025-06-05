@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './ResultMain.css';
 
@@ -7,8 +7,53 @@ export default function ResultMain() {
     const navigate = useNavigate();
 
     const images = location.state?.images || [];
-    const storyline = location.state?.storyline || '';
-    const prompts = location.state?.prompts || [];
+    const originalStoryline = location.state?.storyline || '';
+    const originalPrompts = location.state?.prompts || [];
+
+    const [translatedPrompts, setTranslatedPrompts] = useState([]);
+    const [translatedStoryline, setTranslatedStoryline] = useState(originalStoryline);
+
+    useEffect(() => {
+        const translateAll = async () => {
+            try {
+                // Переводим промпты
+                const promptsRes = await fetch('http://storysight.ru/api/translate-prompts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompts: originalPrompts })
+                });
+
+                const promptsData = await promptsRes.json();
+                setTranslatedPrompts(promptsData.translated_prompts || originalPrompts);
+            } catch (error) {
+                console.error('Ошибка перевода промптов:', error);
+                setTranslatedPrompts(originalPrompts);
+            }
+
+            try {
+                // Переводим сюжет
+                const storylineRes = await fetch('http://storysight.ru/api/translate-prompts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompts: [originalStoryline] })
+                });
+
+                const storylineData = await storylineRes.json();
+                setTranslatedStoryline(storylineData.translated_prompts?.[0] || originalStoryline);
+            } catch (error) {
+                console.error('Ошибка перевода сюжета:', error);
+                setTranslatedStoryline(originalStoryline);
+            }
+        };
+
+        if (originalPrompts.length > 0 || originalStoryline) {
+            translateAll();
+        }
+    }, [originalPrompts, originalStoryline]);
 
     if (images.length === 0) {
         return (
@@ -29,10 +74,14 @@ export default function ResultMain() {
     };
 
     const handleSaveProject = async () => {
-        const projectData = { storyline, prompts, images };
+        const projectData = {
+            storyline: translatedStoryline,
+            prompts: translatedPrompts,
+            images
+        };
 
         try {
-            const response = await fetch('http://localhost:8000/save-project', {
+            const response = await fetch('http://storysight.ru/api/save-project', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -59,16 +108,18 @@ export default function ResultMain() {
 
             <div className="story-block">
                 <h2>Сюжет</h2>
-                <p>{storyline}</p>
+                <p>{translatedStoryline}</p>
             </div>
 
             <div className="images-grid">
                 {images.map((url, i) => (
                     <div key={i} className="image-card">
                         <div className="image-wrapper">
-                            <img src={url} alt={`Scene ${i + 1}`} />
+                            <img src={url} alt={`Сцена ${i + 1}`} />
                         </div>
-                        <div className="image-overlay">{prompts[i]}</div>
+                        <div className="image-overlay">
+                            <strong>{i + 1}.</strong> {translatedPrompts[i] || originalPrompts[i]}
+                        </div>
                         <button className="download-btn" onClick={() => handleDownload(url, i)}>
                             Скачать
                         </button>

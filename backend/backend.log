@@ -75,3 +75,442 @@
 2025-05-30 23:54:30,497 - ERROR - Ошибка генерации комикса: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
 2025-05-30 23:54:30,686 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 403 Forbidden"
 2025-05-30 23:54:30,687 - ERROR - Ошибка генерации комикса: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2025-06-02 22:38:49,776 - ERROR - Ошибка генерации комикса: 500: OpenAI SDK not installed
+2025-06-02 22:41:48,814 - ERROR - Ошибка генерации комикса: Using SOCKS proxy, but the 'socksio' package is not installed. Make sure to install httpx using `pip install httpx[socks]`.
+2025-06-02 22:43:10,133 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-02 22:43:10,135 - ERROR - Ошибка генерации комикса: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-ope***-key. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-02 22:48:12,538 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-02 22:48:12,540 - ERROR - Ошибка генерации комикса: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your-ope***-key. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-02 22:52:56,027 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-02 22:52:56,033 - ERROR - Ошибка генерации комикса: Missing dependencies for SOCKS support.
+2025-06-02 22:55:58,634 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-02 23:10:28,361 - INFO - init_image сохранён во временный файл: /tmp/tmp797rqvht.png
+2025-06-02 23:10:28,362 - INFO - mask_image сохранён во временный файл: /tmp/tmpcwzfc7nq.png
+2025-06-02 23:10:30,113 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-02 23:10:30,147 - INFO - Размер init_image: (1024, 1024), размер mask_image: (558, 558). Изменяем размер маски.
+2025-06-02 23:10:30,197 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-02 23:10:30,206 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-02 23:16:26,290 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-02 23:16:26,294 - INFO - ChatGPT response content:
+Storyline: A giraffe selling chips, happily carrying a bag of chips.
+
+1: Giraffe with a big smile, holding a bag of chips, surrounded by colorful chip packets.
+2025-06-02 23:26:09,442 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-02 23:26:09,449 - INFO - ChatGPT response content:
+Storyline: Describe the character: a cat. Product or service: coffee. Story plot: super coffee.
+
+1: A sleek black cat with bright green eyes lounging next to a steaming cup of coffee.
+2025-06-02 23:36:09,216 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-02 23:36:09,221 - INFO - ChatGPT response content:
+Storyline: Describe the character: a giraffe. Product or service: coffee. Story plot: everything is great.
+
+1: A giraffe elegantly sips coffee from a tall mug, its long neck gracefully reaching for the cup.
+2025-06-02 23:54:33,705 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-02 23:54:33,709 - INFO - ChatGPT response content:
+Storyline: 
+Describe the character: a person
+Product or service: coffee
+Story plot: cool
+
+1: A person enjoying a cup of coffee in a cozy cafe, with a smile on their face.
+2025-06-03 01:46:10,786 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 01:54:16,574 - INFO - init_image сохранён во временный файл: /tmp/tmp8jq89ad3.png
+2025-06-03 01:54:16,574 - INFO - mask_image сохранён во временный файл: /tmp/tmp72xvkmym.png
+2025-06-03 01:54:17,888 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 01:54:17,914 - INFO - Размер init_image: (1024, 1024), размер mask_image: (558, 558). Изменяем размер маски.
+2025-06-03 01:54:17,961 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-03 01:54:17,973 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 08:20:09,145 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 08:21:52,235 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 08:25:49,913 - INFO - init_image сохранён во временный файл: /tmp/tmp0e04t4n5.jpg
+2025-06-03 08:25:49,913 - INFO - mask_image сохранён во временный файл: /tmp/tmp1ba52mmr.png
+2025-06-03 08:25:50,751 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 08:25:50,754 - INFO - Размер init_image: (1024, 1024), размер mask_image: (558, 558). Изменяем размер маски.
+2025-06-03 08:25:50,802 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-03 08:25:50,811 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 08:26:48,374 - INFO - init_image сохранён во временный файл: /tmp/tmpc3_ixtwm.jpg
+2025-06-03 08:26:48,375 - INFO - mask_image сохранён во временный файл: /tmp/tmplu_wowsi.png
+2025-06-03 08:26:49,223 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 08:26:49,224 - INFO - Размер init_image: (1024, 1024), размер mask_image: (558, 558). Изменяем размер маски.
+2025-06-03 08:26:49,264 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-03 08:26:49,273 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 08:47:22,351 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 08:47:22,353 - INFO - ChatGPT response content:
+Storyline: Two cute budgerigars playing with budgerigar toys in a cage.
+
+1: Two colorful budgerigars chirping happily in a cozy cage.
+2: Budgerigar 1 pecking at a shiny mirror toy.
+3: Budgerigar 2 hopping around a colorful bell toy.
+4: Both budgerigars snuggling together on a fluffy swing toy.
+2025-06-03 08:50:42,255 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 08:51:22,350 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 08:54:14,285 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 08:55:25,109 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 08:56:29,602 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 09:09:52,596 - INFO - init_image сохранён во временный файл: /tmp/tmpysv8nymz.jpg
+2025-06-03 09:09:52,596 - INFO - mask_image сохранён во временный файл: /tmp/tmpsbk0oz8s.png
+2025-06-03 09:09:53,848 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 09:09:53,849 - INFO - Размер init_image: (1024, 1024), размер mask_image: (558, 558). Изменяем размер маски.
+2025-06-03 09:09:53,896 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-03 09:09:53,909 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 09:11:43,410 - INFO - init_image сохранён во временный файл: /tmp/tmpjwehd9n1.jpg
+2025-06-03 09:11:43,410 - INFO - mask_image сохранён во временный файл: /tmp/tmpbdt2l1l4.png
+2025-06-03 09:11:44,596 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 09:11:44,597 - INFO - Размер init_image: (1024, 1024), размер mask_image: (559, 559). Изменяем размер маски.
+2025-06-03 09:11:44,643 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-03 09:11:44,654 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 11:19:15,234 - INFO - init_image сохранён во временный файл: /tmp/tmpc_kyjstr.jpg
+2025-06-03 11:19:15,234 - INFO - mask_image сохранён во временный файл: /tmp/tmpysdt2k1o.png
+2025-06-03 11:19:17,031 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 11:19:17,033 - INFO - Размер init_image: (564, 705), размер mask_image: (558, 698). Изменяем размер маски.
+2025-06-03 11:19:17,057 - INFO - Маска перед отправкой в API: размер (564, 705), режим L
+2025-06-03 11:19:17,063 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 12:25:43,885 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:28:43,232 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:30:40,813 - INFO - init_image сохранён во временный файл: /tmp/tmpcsilxoxc.jpg
+2025-06-03 12:30:40,813 - INFO - mask_image сохранён во временный файл: /tmp/tmpfvuxu4ut.png
+2025-06-03 12:30:41,733 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:30:41,757 - INFO - Размер init_image: (564, 705), размер mask_image: (558, 698). Изменяем размер маски.
+2025-06-03 12:30:41,779 - INFO - Маска перед отправкой в API: размер (564, 705), режим L
+2025-06-03 12:30:41,783 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 12:32:59,692 - INFO - init_image сохранён во временный файл: /tmp/tmpd2egmw0s.jpg
+2025-06-03 12:32:59,693 - INFO - mask_image сохранён во временный файл: /tmp/tmp9peq186c.png
+2025-06-03 12:33:00,877 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:33:00,894 - INFO - Размер init_image: (707, 1000), размер mask_image: (558, 790). Изменяем размер маски.
+2025-06-03 12:33:00,945 - INFO - Маска перед отправкой в API: размер (707, 1000), режим L
+2025-06-03 12:33:00,955 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 12:34:44,426 - INFO - init_image сохранён во временный файл: /tmp/tmprokwz6jo.jpg
+2025-06-03 12:34:44,426 - INFO - mask_image сохранён во временный файл: /tmp/tmpdh43jymq.png
+2025-06-03 12:34:45,401 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:34:45,403 - INFO - Размер init_image: (820, 1280), размер mask_image: (558, 872). Изменяем размер маски.
+2025-06-03 12:34:45,451 - INFO - Маска перед отправкой в API: размер (820, 1280), режим L
+2025-06-03 12:34:45,463 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 12:37:09,256 - INFO - init_image сохранён во временный файл: /tmp/tmpn7zgnoo5.jpg
+2025-06-03 12:37:09,256 - INFO - mask_image сохранён во временный файл: /tmp/tmpkalong0y.png
+2025-06-03 12:37:10,559 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:37:10,561 - INFO - Размер init_image: (960, 1280), размер mask_image: (558, 745). Изменяем размер маски.
+2025-06-03 12:37:10,626 - INFO - Маска перед отправкой в API: размер (960, 1280), режим L
+2025-06-03 12:37:10,642 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 12:38:11,667 - INFO - init_image сохранён во временный файл: /tmp/tmp4o0d_4tn.jpg
+2025-06-03 12:38:11,668 - INFO - mask_image сохранён во временный файл: /tmp/tmpa0kba6ms.png
+2025-06-03 12:38:12,802 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:38:12,804 - INFO - Размер init_image: (960, 1280), размер mask_image: (558, 745). Изменяем размер маски.
+2025-06-03 12:38:12,867 - INFO - Маска перед отправкой в API: размер (960, 1280), режим L
+2025-06-03 12:38:12,880 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 12:40:21,963 - INFO - init_image сохранён во временный файл: /tmp/tmp7rgu39a3.jpg
+2025-06-03 12:40:21,964 - INFO - mask_image сохранён во временный файл: /tmp/tmp3x_rjsdd.png
+2025-06-03 12:40:23,034 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:40:23,041 - INFO - Размер init_image: (720, 1280), размер mask_image: (558, 993). Изменяем размер маски.
+2025-06-03 12:40:23,089 - INFO - Маска перед отправкой в API: размер (720, 1280), режим L
+2025-06-03 12:40:23,101 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 12:41:47,005 - INFO - init_image сохранён во временный файл: /tmp/tmpc4au1qa_.png
+2025-06-03 12:41:47,006 - INFO - mask_image сохранён во временный файл: /tmp/tmpjhvzwm7u.png
+2025-06-03 12:41:47,931 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:41:47,935 - INFO - Размер init_image: (720, 1280), размер mask_image: (558, 993). Изменяем размер маски.
+2025-06-03 12:41:47,975 - INFO - Маска перед отправкой в API: размер (720, 1280), режим L
+2025-06-03 12:41:47,984 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 12:50:39,501 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:57:09,358 - INFO - init_image сохранён во временный файл: /tmp/tmpjhr05cra.jpg
+2025-06-03 12:57:09,358 - INFO - mask_image сохранён во временный файл: /tmp/tmpoh942fqm.png
+2025-06-03 12:57:10,591 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-03 12:57:10,594 - INFO - Размер init_image: (707, 1000), размер mask_image: (558, 790). Изменяем размер маски.
+2025-06-03 12:57:10,656 - INFO - Маска перед отправкой в API: размер (707, 1000), режим L
+2025-06-03 12:57:10,670 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-03 22:12:54,032 - INFO - Логин пользователя: telegram_id=5321721301, username=andr_a_777
+2025-06-03 22:12:54,054 - INFO - Создан новый пользователь с telegram_id=5321721301
+2025-06-03 22:14:16,084 - INFO - Логин пользователя: telegram_id=7441031983, username=andr_a_official
+2025-06-03 22:14:16,105 - INFO - Создан новый пользователь с telegram_id=7441031983
+2025-06-03 22:16:10,359 - INFO - Логин пользователя: telegram_id=7441031983, username=andr_a_official
+2025-06-03 22:16:10,368 - INFO - Обновлены данные пользователя с telegram_id=7441031983
+2025-06-03 22:20:28,494 - INFO - Логин пользователя: telegram_id=7441031983, username=andr_a_official
+2025-06-03 22:20:28,501 - INFO - Обновлены данные пользователя с telegram_id=7441031983
+2025-06-03 22:43:05,305 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-03 22:43:05,323 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-03 22:43:38,519 - INFO - Логин: telegram_id=7441031983, username=andr_a_official
+2025-06-03 22:43:38,524 - INFO - Обновлены данные пользователя telegram_id=7441031983
+2025-06-03 23:01:04,685 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-03 23:01:04,706 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-03 23:01:33,040 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-03 23:01:33,045 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 00:22:59,674 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 00:22:59,688 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 00:23:58,958 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 00:23:58,967 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 00:33:06,244 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 00:33:06,251 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 00:36:34,431 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 00:36:34,436 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 00:36:52,139 - INFO - Логин: telegram_id=7441031983, username=andr_a_official
+2025-06-04 00:36:52,145 - INFO - Обновлены данные пользователя telegram_id=7441031983
+2025-06-04 00:37:05,320 - INFO - Логин: telegram_id=7441031983, username=andr_a_official
+2025-06-04 00:37:05,325 - INFO - Обновлены данные пользователя telegram_id=7441031983
+2025-06-04 00:37:19,752 - INFO - Логин: telegram_id=7441031983, username=andr_a_official
+2025-06-04 00:37:19,757 - INFO - Обновлены данные пользователя telegram_id=7441031983
+2025-06-04 00:40:29,373 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 00:40:29,378 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 00:40:39,926 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 00:40:39,931 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 00:41:48,734 - INFO - Логин: telegram_id=7441031983, username=andr_a_official
+2025-06-04 00:41:48,745 - INFO - Обновлены данные пользователя telegram_id=7441031983
+2025-06-04 00:41:53,614 - INFO - Логин: telegram_id=7441031983, username=andr_a_official
+2025-06-04 00:41:53,619 - INFO - Обновлены данные пользователя telegram_id=7441031983
+2025-06-04 01:04:00,323 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 01:04:00,332 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 01:13:52,003 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 01:13:52,008 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 01:20:45,706 - INFO - Retrying request to /chat/completions in 0.477915 seconds
+2025-06-04 01:20:47,671 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 01:20:59,103 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 01:20:59,108 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 01:24:24,980 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 01:24:24,981 - INFO - ChatGPT response content:
+Storyline: 
+Describe the character: a mysterious girl with silver hair and glowing blue eyes.
+Product or service: a magical pendant that grants wishes.
+Story plot: the girl uses the pendant to save her village from a dark curse.
+
+1: The mysterious girl with silver hair walks through a mystical forest, her blue eyes shining with determination.
+2025-06-04 01:29:32,372 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 01:29:32,377 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 01:32:36,754 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 01:32:36,756 - INFO - ChatGPT response content:
+Storyline: Describe the character: a young girl with curly hair, wearing a pink dress and holding a teddy bear.
+
+1: A young girl with curly hair smiles while holding a teddy bear in a blooming garden.
+2025-06-04 01:34:54,562 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 01:34:54,565 - INFO - ChatGPT response content:
+Storyline: 
+Describe the character: A young girl with curly hair, holding a basket of colorful flowers, smiling brightly.
+Product or service: Flower delivery service.
+Story plot: The girl happily delivers flowers to different houses in a quaint neighborhood.
+
+1: A young girl with curly hair stands in front of a white picket fence, holding a basket of vibrant flowers.
+2025-06-04 02:04:18,247 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 02:04:18,251 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 02:04:29,674 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 02:04:29,678 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 14:54:50,289 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 14:54:50,297 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 15:05:15,339 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 15:05:15,345 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 15:05:41,486 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 15:05:41,491 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 15:15:46,473 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 15:15:46,478 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 15:22:35,140 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 15:22:35,145 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 15:22:54,246 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 15:22:54,252 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 15:23:07,158 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 15:24:08,669 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 15:24:08,675 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 15:25:05,801 - INFO - init_image сохранён во временный файл: /tmp/tmpt227hop6.png
+2025-06-04 15:25:05,802 - INFO - mask_image сохранён во временный файл: /tmp/tmpcug0p9yg.png
+2025-06-04 15:25:07,316 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 15:25:07,346 - INFO - Размер init_image: (1024, 1024), размер mask_image: (388, 388). Изменяем размер маски.
+2025-06-04 15:25:07,394 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-04 15:25:07,407 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 15:25:49,128 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 15:25:49,130 - INFO - ChatGPT response content:
+Storyline: 
+Describe the character: A young girl with curly hair and a big smile, holding a colorful bouquet of flowers.
+Product or service: Flower delivery service.
+Story plot: The girl happily receives a surprise bouquet of flowers at her doorstep.
+
+1: A young girl with curly hair and a big smile stands at her doorstep, holding a colorful bouquet of flowers.
+2025-06-04 15:29:39,604 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 15:29:39,610 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 15:38:50,271 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 15:38:50,276 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 15:49:26,706 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 15:49:26,723 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 15:49:40,112 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 15:50:30,184 - INFO - init_image сохранён во временный файл: /tmp/tmp5nbyd448.png
+2025-06-04 15:50:30,185 - INFO - mask_image сохранён во временный файл: /tmp/tmpv93dyzq3.png
+2025-06-04 15:50:31,639 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 15:50:31,654 - INFO - Размер init_image: (1024, 1024), размер mask_image: (558, 558). Изменяем размер маски.
+2025-06-04 15:50:31,701 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-04 15:50:31,718 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 15:51:40,603 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 15:51:40,605 - INFO - ChatGPT response content:
+Storyline: 
+Character description: Uzbek
+Service: Cooking pilaf
+Plot: I want the Uzbek to have a sporty figure and cook amazing pilaf.
+
+1: A fit Uzbek man in a gym, lifting weights with determination.
+2: The Uzbek chef expertly stirring a large pot of sizzling pilaf.
+3: Guests at a festive table, savoring the delicious Uzbek pilaf with smiles of satisfaction.
+2025-06-04 16:09:27,603 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 16:09:27,610 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 16:10:03,738 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 16:11:24,058 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 16:15:13,490 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 16:15:13,496 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 16:15:45,868 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 16:19:03,919 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 16:19:03,929 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 16:23:39,039 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 16:23:39,044 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 16:23:47,603 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 16:24:35,716 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 16:28:31,432 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 16:36:53,491 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 16:36:53,517 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 16:36:55,235 - INFO - init_image сохранён во временный файл: /tmp/tmphv9oqvg_.png
+2025-06-04 16:36:55,235 - INFO - mask_image сохранён во временный файл: /tmp/tmpzdwxkpum.png
+2025-06-04 16:36:56,283 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 16:36:56,300 - INFO - Размер init_image: (1024, 1024), размер mask_image: (558, 558). Изменяем размер маски.
+2025-06-04 16:36:56,342 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-04 16:36:56,354 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 16:41:23,400 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 16:41:23,407 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 16:41:27,078 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 16:41:27,083 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 16:47:21,625 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 16:47:21,631 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 17:17:38,440 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 17:17:38,447 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 17:24:24,512 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 17:24:24,518 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 17:28:27,359 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 17:28:27,366 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 18:19:47,365 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 18:19:47,371 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 18:39:38,645 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 18:39:38,650 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 18:46:19,793 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 18:46:19,813 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 18:58:41,343 - INFO - Логин: telegram_id=7441031983, username=andr_a_official
+2025-06-04 18:58:41,348 - INFO - Обновлены данные пользователя telegram_id=7441031983
+2025-06-04 18:58:47,850 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 18:58:47,852 - INFO - ChatGPT response content:
+Storyline: A beautiful girl showcasing the beauty and reliability of craft gift wrapping paper. Ideal for gifts, flowers, and more.
+
+1: Scene of a beautiful girl elegantly wrapping a gift with the craft paper.
+2: Close-up shot of the intricate design and texture of the craft paper.
+3: Scene showing the wrapped gift and a bouquet of flowers adorned with the paper.
+4: Image of various gifts and items wrapped in the craft paper, highlighting its versatility.
+2025-06-04 18:59:52,212 - INFO - Логин: telegram_id=7441031983, username=andr_a_official
+2025-06-04 18:59:52,216 - INFO - Обновлены данные пользователя telegram_id=7441031983
+2025-06-04 19:02:52,658 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 19:02:52,663 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 19:24:09,620 - INFO - Логин: telegram_id=1094024286, username=Milky_Way109
+2025-06-04 19:24:09,628 - INFO - Создан новый пользователь telegram_id=1094024286
+2025-06-04 19:24:22,594 - INFO - Логин: telegram_id=1094024286, username=Milky_Way109
+2025-06-04 19:24:22,600 - INFO - Обновлены данные пользователя telegram_id=1094024286
+2025-06-04 19:34:04,530 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 19:34:04,540 - INFO - ChatGPT response content:
+Storyline: My character is an ordinary student who studies at the university during the day and works part-time at a café in the evening. I showcase different layers of society, providing deep insights and motivation for growth in challenging life situations.
+
+1: The student wakes up in a crowded dorm room with his roommates early in the morning.
+2: The student rides a crowded bus to his university.
+3: In a lecture hall, the student takes notes as the professor discusses important Russian history.
+4: During a break, the student eats shawarma at a small, dirty table.
+5: The student solves a math equation with an integral at the board, holding chalk in hand.
+6: Changing into different clothes, the student walks down the street.
+7: Working at the café, the student wipes down tables after customers.
+8: The student returns to the dorm late at night, looking extremely tired.
+2025-06-04 20:12:08,204 - INFO - Логин: telegram_id=919453635, username=Yainfinity
+2025-06-04 20:12:08,211 - INFO - Создан новый пользователь telegram_id=919453635
+2025-06-04 20:13:59,043 - INFO - init_image сохранён во временный файл: /tmp/tmpkxxz3xch.jpeg
+2025-06-04 20:13:59,043 - INFO - mask_image сохранён во временный файл: /tmp/tmplff262nz.png
+2025-06-04 20:14:00,396 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:14:00,407 - INFO - Размер init_image: (1200, 1875), размер mask_image: (348, 544). Изменяем размер маски.
+2025-06-04 20:14:00,472 - INFO - Маска перед отправкой в API: размер (1200, 1875), режим L
+2025-06-04 20:14:00,493 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 20:15:56,022 - INFO - Логин: telegram_id=919453635, username=Yainfinity
+2025-06-04 20:15:56,032 - INFO - Обновлены данные пользователя telegram_id=919453635
+2025-06-04 20:16:00,008 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-04 20:16:00,014 - INFO - Обновлены данные пользователя telegram_id=5321721301
+2025-06-04 20:17:06,464 - INFO - init_image сохранён во временный файл: /tmp/tmp_j7al_n_.jpg
+2025-06-04 20:17:06,464 - INFO - mask_image сохранён во временный файл: /tmp/tmpvlnehrl9.png
+2025-06-04 20:17:09,097 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:17:09,103 - INFO - Размер init_image: (819, 1280), размер mask_image: (558, 872). Изменяем размер маски.
+2025-06-04 20:17:09,157 - INFO - Маска перед отправкой в API: размер (819, 1280), режим L
+2025-06-04 20:17:09,167 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 20:18:23,433 - INFO - init_image сохранён во временный файл: /tmp/tmpg7fq8aay.jpg
+2025-06-04 20:18:23,434 - INFO - mask_image сохранён во временный файл: /tmp/tmp97a2dhyu.png
+2025-06-04 20:18:24,281 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:18:24,284 - INFO - Размер init_image: (707, 1000), размер mask_image: (558, 789). Изменяем размер маски.
+2025-06-04 20:18:24,336 - INFO - Маска перед отправкой в API: размер (707, 1000), режим L
+2025-06-04 20:18:24,347 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 20:20:20,568 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:20:20,574 - INFO - ChatGPT response content:
+Storyline: A magical fairy in shades of purple advertises laundry detergent.
+
+1: Scene 1
+[The magical fairy appears, surrounded by sparkling purple dust, holding a box of laundry detergent.]
+
+2: Scene 2
+[Fairy sprinkles the detergent into a washing machine filled with clothes, smiling as bubbles form.]
+
+3: Scene 3
+[The clothes come out of the washing machine sparkling clean, with the fairy waving a wand in satisfaction.]
+2025-06-04 20:21:25,516 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:22:44,955 - INFO - init_image сохранён во временный файл: /tmp/tmp39m51m3n.jpg
+2025-06-04 20:22:44,956 - INFO - mask_image сохранён во временный файл: /tmp/tmpotr8ogxh.png
+2025-06-04 20:22:46,768 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:22:46,790 - INFO - Размер init_image: (1024, 1024), размер mask_image: (558, 558). Изменяем размер маски.
+2025-06-04 20:22:46,829 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-04 20:22:46,842 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 20:23:06,843 - INFO - init_image сохранён во временный файл: /tmp/tmp6ry03rrk.png
+2025-06-04 20:23:06,844 - INFO - mask_image сохранён во временный файл: /tmp/tmpo9bk66uv.png
+2025-06-04 20:23:08,760 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:23:08,762 - INFO - Размер init_image: (1024, 1024), размер mask_image: (558, 558). Изменяем размер маски.
+2025-06-04 20:23:08,811 - INFO - Маска перед отправкой в API: размер (1024, 1024), режим L
+2025-06-04 20:23:08,822 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 20:23:24,524 - INFO - Логин: telegram_id=1094024286, username=Milky_Way109
+2025-06-04 20:23:24,558 - INFO - Обновлены данные пользователя telegram_id=1094024286
+2025-06-04 20:23:49,781 - INFO - init_image сохранён во временный файл: /tmp/tmp4l56uxhu.jpg
+2025-06-04 20:23:49,782 - INFO - mask_image сохранён во временный файл: /tmp/tmpois75pvx.png
+2025-06-04 20:23:50,798 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:23:50,804 - INFO - Размер init_image: (819, 1280), размер mask_image: (558, 872). Изменяем размер маски.
+2025-06-04 20:23:50,851 - INFO - Маска перед отправкой в API: размер (819, 1280), режим L
+2025-06-04 20:23:50,863 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 20:24:50,961 - INFO - init_image сохранён во временный файл: /tmp/tmprga4vmpt.webp
+2025-06-04 20:24:50,962 - INFO - mask_image сохранён во временный файл: /tmp/tmptzkh7pgp.png
+2025-06-04 20:24:52,333 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:24:52,401 - INFO - Размер init_image: (1200, 900), размер mask_image: (558, 419). Изменяем размер маски.
+2025-06-04 20:24:52,442 - INFO - Маска перед отправкой в API: размер (1200, 900), режим L
+2025-06-04 20:24:52,457 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 20:25:28,777 - INFO - Логин: telegram_id=919453635, username=Yainfinity
+2025-06-04 20:25:28,783 - INFO - Обновлены данные пользователя telegram_id=919453635
+2025-06-04 20:26:06,360 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:26:06,364 - INFO - ChatGPT response content:
+Storyline: Strong, incredible, smart, beautiful, but not a jerk. Wow, cool.
+
+1: A handsome man poses with a gun in his right hand on an empty city street.
+2: The same man now poses with less attractive men and women on a billboard.
+2025-06-04 20:26:11,563 - INFO - init_image сохранён во временный файл: /tmp/tmpn87g92d7.png
+2025-06-04 20:26:11,564 - INFO - mask_image сохранён во временный файл: /tmp/tmpbscpwx5n.png
+2025-06-04 20:26:12,524 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:26:12,533 - INFO - Размер init_image: (1200, 900), размер mask_image: (558, 419). Изменяем размер маски.
+2025-06-04 20:26:12,575 - INFO - Маска перед отправкой в API: размер (1200, 900), режим L
+2025-06-04 20:26:12,585 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 20:27:54,966 - INFO - init_image сохранён во временный файл: /tmp/tmp0p2o_cvb.jpg
+2025-06-04 20:27:54,967 - INFO - mask_image сохранён во временный файл: /tmp/tmptx4lezy_.png
+2025-06-04 20:27:55,982 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:27:55,984 - INFO - Размер init_image: (600, 375), размер mask_image: (558, 349). Изменяем размер маски.
+2025-06-04 20:27:55,998 - INFO - Маска перед отправкой в API: размер (600, 375), режим L
+2025-06-04 20:27:56,002 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 20:28:40,629 - INFO - init_image сохранён во временный файл: /tmp/tmpbbgt0xtu.jpg
+2025-06-04 20:28:40,629 - INFO - mask_image сохранён во временный файл: /tmp/tmp2y3gmmd5.png
+2025-06-04 20:28:41,843 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:28:41,846 - INFO - Размер init_image: (600, 375), размер mask_image: (558, 349). Изменяем размер маски.
+2025-06-04 20:28:41,860 - INFO - Маска перед отправкой в API: размер (600, 375), режим L
+2025-06-04 20:28:41,864 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 20:31:08,645 - INFO - init_image сохранён во временный файл: /tmp/tmpyc2ed5z6.jpg
+2025-06-04 20:31:08,646 - INFO - mask_image сохранён во временный файл: /tmp/tmpjug6_qvd.png
+2025-06-04 20:31:09,550 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 20:31:09,554 - INFO - Размер init_image: (900, 1313), размер mask_image: (558, 814). Изменяем размер маски.
+2025-06-04 20:31:09,608 - INFO - Маска перед отправкой в API: размер (900, 1313), режим L
+2025-06-04 20:31:09,631 - INFO - Маска сохранена для проверки: /tmp/debug_mask_check.png
+2025-06-04 22:49:52,497 - INFO - Логин: telegram_id=7441031983, username=andr_a_official
+2025-06-04 22:49:52,502 - INFO - Обновлены данные пользователя telegram_id=7441031983
+2025-06-05 15:31:55,955 - INFO - Логин: telegram_id=919453635, username=Yainfinity
+2025-06-05 15:31:55,960 - INFO - Обновлены данные пользователя telegram_id=919453635
+2025-06-05 18:24:03,382 - INFO - Логин: telegram_id=919453635, username=Yainfinity
+2025-06-05 18:24:03,427 - INFO - Обновлены данные пользователя telegram_id=919453635
+2025-06-05 19:20:24,106 - INFO - Логин: telegram_id=5321721301, username=andr_a_777
+2025-06-05 19:20:24,119 - INFO - Обновлены данные пользователя telegram_id=5321721301

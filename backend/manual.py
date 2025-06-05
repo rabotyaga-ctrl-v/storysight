@@ -156,43 +156,27 @@ def generate_image_stability(prompt: str, style: str) -> str:
     return base64_image
 
 # --- Эндпоинты ---
-
 @manual_router.post("/generate-manual")
 def generate_manual(req: ManualRequest, request: Request, db: Session = Depends(get_db)):
     combined_text = (
         f"Describe the character: {req.question1}\n"
         f"Product or service: {req.question2}\n"
-        f"Story plot: {req.question3}"
-    )
-
-    telegram_id = request.cookies.get("telegram_id")
-    if not telegram_id:
-        raise HTTPException(status_code=401, detail="Неавторизован")
-
-    try:
-        telegram_id = int(telegram_id)
-    except ValueError:
-        raise HTTPException(status_code=400, detail="Некорректный telegram_id")
-
-    user = db.query(User).filter(User.telegram_id == telegram_id).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="Пользователь не найден")
+        f"Story plot: {req.question3}")
 
     try:
         storyline, prompts = generate_scenes_with_chatgpt(combined_text, req.style, req.num_images)
 
-        images_with_prompts = []
+        images = []
         for prompt in prompts[:req.num_images]:
             base64_img = generate_image_stability(prompt, req.style)
-            images_with_prompts.append({
-                "url": base64_img,
-                "prompt": prompt
-            })
+            images.append(base64_img)
 
         return {
             "storyline": storyline,
-            "images": images_with_prompts
-        }
+            "images": images,
+            "prompts": prompts[:req.num_images]  # если тебе нужны на фронте
+    }
+
 
     except Exception as e:
         logger.exception("Ошибка в /generate-manual")

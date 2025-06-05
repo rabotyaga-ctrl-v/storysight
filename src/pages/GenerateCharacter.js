@@ -9,12 +9,26 @@ export default function GenerateCharacter() {
     const [imageFile, setImageFile] = useState(null);
     const [imageURL, setImageURL] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [, setResultImage] = useState(null); // для результата
+
+    const [isLoggedIn, setIsLoggedIn] = useState(null);
+    const [showLoginModal, setShowLoginModal] = useState(false);
 
     const canvasRef = useRef(null);
     const imgRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
     const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        fetch('http://storysight.ru/api/auth/me', {
+            credentials: 'include',
+        })
+            .then(res => {
+                if (res.ok) return res.json();
+                throw new Error('Неавторизован');
+            })
+            .then(() => setIsLoggedIn(true))
+            .catch(() => setIsLoggedIn(false));
+    }, []);
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -22,7 +36,6 @@ export default function GenerateCharacter() {
         setImageFile(file);
         const url = URL.createObjectURL(file);
         setImageURL(url);
-        setResultImage(null); // сброс результата при новом файле
     };
 
     const handleMouseDown = (e) => {
@@ -43,10 +56,10 @@ export default function GenerateCharacter() {
         const currentX = e.clientX - rect.left;
         const currentY = e.clientY - rect.top;
 
-        ctx.strokeStyle = 'white';  // белая кисть
+        ctx.strokeStyle = 'white';
         ctx.lineWidth = 20;
         ctx.lineCap = 'round';
-        ctx.globalAlpha = 1.0; // полностью непрозрачная кисть
+        ctx.globalAlpha = 1.0;
 
         ctx.beginPath();
         ctx.moveTo(lastPos.x, lastPos.y);
@@ -56,7 +69,6 @@ export default function GenerateCharacter() {
         setLastPos({ x: currentX, y: currentY });
     };
 
-
     const clearMask = () => {
         if (!canvasRef.current) return;
         const ctx = canvasRef.current.getContext('2d');
@@ -65,10 +77,14 @@ export default function GenerateCharacter() {
 
     useEffect(() => {
         clearMask();
-        setResultImage(null);
     }, [imageURL]);
 
     const handleGenerateClick = async () => {
+        if (!isLoggedIn) {
+            setShowLoginModal(true);
+            return;
+        }
+
         if (!prompt.trim()) {
             alert('Пожалуйста, введите промпт.');
             return;
@@ -83,16 +99,15 @@ export default function GenerateCharacter() {
         try {
             const formData = new FormData();
             formData.append('prompt', prompt);
-            formData.append('character_name', 'MyCharacter'); // обязательно!
+            formData.append('character_name', 'MyCharacter');
             formData.append('init_image', imageFile);
 
-            // Получаем blob маски из canvas (формат PNG)
             const maskBlob = await new Promise((resolve) =>
                 canvasRef.current.toBlob(resolve, 'image/png')
             );
             formData.append('mask_image', maskBlob);
 
-            const response = await fetch('http://localhost:8000/edit-character', { // полный адрес
+            const response = await fetch('http://storysight.ru/api/edit-character', {
                 method: 'POST',
                 body: formData,
             });
@@ -106,13 +121,11 @@ export default function GenerateCharacter() {
 
             navigate('/result-main', {
                 state: {
-                    images: [`data:image/png;base64,${data.images[0]}`], // оборачиваем в массив
-                    prompts: [prompt], // тоже массив
-                    storyline: 'Изменено в редакторе', // можно оставить пустым, если не используется
+                    images: [`data:image/png;base64,${data.images[0]}`],
+                    prompts: [prompt],
+                    storyline: 'Изменено в редакторе',
                 },
             });
-
-
         } catch (error) {
             alert('Ошибка генерации: ' + error.message);
         } finally {
@@ -120,33 +133,62 @@ export default function GenerateCharacter() {
         }
     };
 
+    // Telegram Login Widget
+    useEffect(() => {
+        if (!showLoginModal) return;
+
+        window.TelegramLoginWidget = {
+            dataOnauth: function (user) {
+                fetch('http://storysight.ru/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(user),
+                })
+                    .then((res) => {
+                        if (!res.ok) throw new Error('Ошибка авторизации');
+                        return res.json();
+                    })
+                    .then(() => {
+                        setIsLoggedIn(true);
+                        setShowLoginModal(false);
+                    })
+                    .catch((err) => alert('Ошибка авторизации: ' + err.message));
+            },
+        };
+
+        const script = document.createElement('script');
+        script.src = 'https://telegram.org/js/telegram-widget.js?22';
+        script.setAttribute('data-telegram-login', 'zavod_worker_bot'); // без @
+        script.setAttribute('data-size', 'large');
+        script.setAttribute('data-userpic', 'false');
+        script.setAttribute('data-request-access', 'write');
+        script.setAttribute('data-onauth', 'TelegramLoginWidget.dataOnauth(user)');
+        script.async = true;
+
+        const container = document.getElementById('tg-login-button');
+        container.innerHTML = '';
+        container.appendChild(script);
+    }, [showLoginModal]);
 
     return (
         <div className="generate-container" style={{ maxWidth: 600, margin: '30px auto', padding: 20 }}>
-            <h1 style={{ textAlign: 'center', marginBottom: 20 }}>
+            <h1 className="generate-title" style={{ marginBottom: 20 }}>
                 Редактирование изображения (Image2Image с маской)
             </h1>
 
             <p style={{ fontSize: 14, color: '#555', marginBottom: 20 }}>
-                Загрузите ваше изображение, выделите кисточкой область для изменения, введите промпт и нажмите
-                "Начать генерацию".
+                Загрузите изображение, выделите область для изменения, введите промпт и нажмите "Начать генерацию".
             </p>
 
             <textarea
+                className="generate-textarea"
                 placeholder="Опишите, что хотите добавить или изменить..."
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 rows={3}
-                style={{
-                    width: '100%',
-                    padding: 10,
-                    fontSize: 16,
-                    borderRadius: 6,
-                    border: '1px solid #ccc',
-                    marginBottom: 20,
-                    resize: 'none',
-                    fontFamily: 'Arial, sans-serif',
-                }}
                 disabled={loading}
             />
 
@@ -193,19 +235,12 @@ export default function GenerateCharacter() {
                 )}
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 10 }}>
+            <div className="generate-nav">
                 <button
                     onClick={() => navigate(-1)}
                     disabled={loading}
-                    style={{
-                        flex: 1,
-                        padding: '10px 0',
-                        borderRadius: 6,
-                        border: '1px solid #ccc',
-                        background: '#fff',
-                        cursor: 'pointer',
-                        fontWeight: 'bold',
-                    }}
+                    className="generate-btn"
+                    style={{ flex: 1, backgroundColor: '#fff', color: '#6b4c9a', border: '2px solid #b76aff' }}
                 >
                     Назад
                 </button>
@@ -213,20 +248,58 @@ export default function GenerateCharacter() {
                 <button
                     onClick={handleGenerateClick}
                     disabled={loading}
-                    style={{
-                        flex: 2,
-                        padding: '10px 0',
-                        borderRadius: 6,
-                        border: 'none',
-                        background: '#6c63ff',
-                        color: 'white',
-                        fontWeight: 'bold',
-                        cursor: 'pointer',
-                    }}
+                    className="generate-btn"
+                    style={{ flex: 2 }}
                 >
                     {loading ? 'Генерация...' : 'Начать генерацию'}
                 </button>
             </div>
+
+            {showLoginModal && (
+                <div
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0,0,0,0.5)',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        zIndex: 1000,
+                    }}
+                    onClick={() => setShowLoginModal(false)}
+                >
+                    <div
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                            backgroundColor: 'white',
+                            padding: 20,
+                            borderRadius: 10,
+                            maxWidth: 400,
+                            width: '90%',
+                            textAlign: 'center',
+                            color: '#000'
+                        }}
+                    >
+                        <p>Для генерации нужно войти через Telegram</p>
+                        <div id="tg-login-button" style={{ marginBottom: 10 }} />
+                        <button
+                            onClick={() => setShowLoginModal(false)}
+                            style={{
+                                padding: '6px 12px',
+                                borderRadius: 6,
+                                border: '1px solid #ccc',
+                                backgroundColor: 'white',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            Отмена
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
